@@ -6,7 +6,7 @@ use App\Events\ChirpCreated;
 use App\Notifications\NewChirp;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Models\User;
+use App\Models\User;    
 
 class SendChirpCreatedNotifications implements ShouldQueue
 {
