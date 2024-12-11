@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-
+    use HasFactory;
+    protected $fillable = [
+        'chirp_id',
+        'user_id',
+        'content'
+    ];
     public function chirps()
     {
         return $this->belongsTo(Chirp::class);

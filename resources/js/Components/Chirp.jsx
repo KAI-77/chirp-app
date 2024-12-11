@@ -10,6 +10,16 @@ dayjs.extend(relativeTime);
 export default function Chirp({ chirp }) {
     const { auth } = usePage().props;
     const [editing, setEditing] = useState(false);
+
+    const {
+        data: commentData,
+        setData: setCommentData,
+        post,
+        errors: commentErrors,
+    } = useForm({
+        content: "",
+    });
+
     const { data, setData, patch, clearErrors, reset, errors } = useForm({
         message: chirp.message,
     });
@@ -18,6 +28,13 @@ export default function Chirp({ chirp }) {
         e.preventDefault();
         patch(route("chirps.update", chirp.id), {
             onSuccess: () => setEditing(false),
+        });
+    };
+
+    const submitComment = (e) => {
+        e.preventDefault();
+        post(route("comments.store", chirp.id), {
+            onSuccess: () => setCommentData("content", ""),
         });
     };
 
@@ -109,6 +126,22 @@ export default function Chirp({ chirp }) {
                         {chirp.message}
                     </p>
                 )}
+                <form onSubmit={submitComment} className="mt-4">
+                    <textarea
+                        value={commentData.message}
+                        onChange={(e) =>
+                            setCommentData("content", e.target.value)
+                        }
+                        placeholder="Write a comment"
+                        required
+                        className="w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                    ></textarea>
+                    <InputError
+                        message={commentErrors.content}
+                        className="mt-2"
+                    />
+                    <PrimaryButton className="mt-2">Comment</PrimaryButton>
+                </form>
             </div>
         </div>
     );
