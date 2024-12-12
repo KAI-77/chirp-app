@@ -127,8 +127,9 @@ export default function Chirp({ chirp }) {
                     </p>
                 )}
                 <form onSubmit={submitComment} className="mt-4">
+
                     <textarea
-                        value={commentData.message}
+                        value={commentData.content}
                         onChange={(e) =>
                             setCommentData("content", e.target.value)
                         }

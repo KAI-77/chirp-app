@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Chirp extends Model
 {
     protected $fillable = [
-        'message'
+        'message', 'content'
     ];
 
     protected $dispatchesEvents = [

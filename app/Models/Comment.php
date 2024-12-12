@@ -9,9 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'chirp_id',
-        'user_id',
-        'content'
+
+
+        'content', 'chirp_id', 'user_id'
     ];
     public function chirps()
     {
